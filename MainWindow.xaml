@@ -1,0 +1,92 @@
+﻿<Window x:Class="Music_Player.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Background = "#222222"
+        Title="MainWindow" Height="450" Width="800">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Menu Bar -->
+        <Menu Grid.Row="0" Background="#222222">
+            <MenuItem Header="Home" Foreground="White"/>
+            <MenuItem Header="Playlists" Foreground="White" Click="OpenPlaylistManager_Click"/>
+            <MenuItem Header="Library" Foreground="White"/>
+        </Menu>
+
+        <StackPanel Grid.Row="1" Grid.Column="0" Background="#2b2b2b" Margin="10,10,10,10">
+            <TextBlock Name="PlaylistTitle" Text="Playlist" Foreground="White" FontSize="18" FontWeight="Bold" Margin="10" />
+            <ListBox Name="PlaylistSongsListBox" SelectionChanged="PlaylistSongsListBox_SelectionChanged" Background="#2b2b2b" Margin="10,10,10,10">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Title}" Foreground="White" />
+                        <!-- Bind to the 'Title' property -->
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <!-- Buttons to add and remove songs -->
+            <Button Content="Add Song to Playlist" Click="AddSongToPlaylist_Click" Margin="10" />
+            <Button Content="Remove Song from Playlist" Click="RemoveSongFromPlaylist_Click" Margin="10" />
+        </StackPanel>
+
+        <!-- Column 2 -->
+        <StackPanel Grid.Row="1" Grid.Column="1" Background="#2b2b2b" Margin="10,10,10,10">
+            
+            <TextBlock Text="Library/Main Section" Foreground="White" FontSize="18" FontWeight="Bold" />
+            <ListBox Name="SongListBox" SelectionChanged="SongListBox_SelectionChanged"  Margin="10,10,10,10" Background="#2b2b2b" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Title}" Foreground="White" />
+                        <!-- Set text color -->
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <Button Content="Add Songs" Click="AddSongsToLibrary_Click" Margin="10" />
+        </StackPanel>
+        
+        
+
+        <!-- Column 3 -->
+        <StackPanel Grid.Row="1" Grid.Column="2" Background="#2b2b2b" Margin="10,10,10,10">
+            
+            <TextBlock Text="Now Playing"  Foreground="White" FontSize="18" FontWeight="Bold"/>
+            <Image Name="AlbumArtImage" Stretch="Uniform" 
+               HorizontalAlignment="Stretch" 
+               VerticalAlignment="Stretch" Margin="10" />
+            <!-- Placeholder for album art -->
+            <TextBlock Name="NowPlayingTitle" Text="No song playing" Foreground="White" FontSize="18" FontWeight="Bold" Margin="10" />
+            <TextBlock Name="NowPlayingAuthor" Text="No Author Available" Foreground="White" FontSize="18" FontWeight="Bold" Margin="10" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="Play"  Click="PlaySong_Click">
+            </Button>
+            <Button Content="Pause" Click="PauseSong_Click"/>
+            <ProgressBar x:Name="SongProgressBar" 
+                         Minimum="0" 
+                         Maximum="100" 
+                         Value="0" 
+                         Width="400"
+                         Height="20" 
+                         />
+
+           
+        </StackPanel>
+
+    </Grid>
+</Window>

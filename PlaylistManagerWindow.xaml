@@ -1,0 +1,26 @@
+﻿<Window x:Class="Music_Player.PlaylistManagerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Music_Player"
+        mc:Ignorable="d"
+        Background = "#222222"
+        Title="PlaylistManagerWindow" Height="450" Width="635">
+    <Grid>
+        <StackPanel Margin="10">
+            <TextBlock Text="Playlists" FontSize="18" FontWeight="Bold" Margin="10" Foreground="White"/>
+
+            <!-- List of playlists -->
+            <ListBox Name="PlaylistsListBox" SelectionMode="Single" DisplayMemberPath="Name"/>
+            <!-- Single selection -->
+
+            <!-- Controls for creating a new playlist -->
+            <TextBox Name="NewPlaylistNameTextBox"  Margin="10" />
+            <Button Content="Add Playlist" Click="AddPlaylist_Click" Margin="10" />
+
+            <!-- Button to delete selected playlist -->
+            <Button Content="Delete Selected Playlist" Click="DeletePlaylist_Click" Margin="10" />
+        </StackPanel>
+    </Grid>
+</Window>
